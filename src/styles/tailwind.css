@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Colors */
+  --color-primary: #2563EB; /* Deep blue (primary) - blue-600 */
+  --color-secondary: #64748B; /* Neutral slate (secondary) - slate-500 */
+  --color-accent: #0EA5E9; /* Bright sky blue (accent) - sky-500 */
+  
+  /* Background Colors */
+  --color-background: #FFFFFF; /* Pure white (background) - white */
+  --color-surface: #F8FAFC; /* Subtle off-white (surface) - slate-50 */
+  
+  /* Text Colors */
+  --color-text-primary: #0F172A; /* Near-black (text primary) - slate-900 */
+  --color-text-secondary: #475569; /* Medium gray (text secondary) - slate-600 */
+  
+  /* Status Colors */
+  --color-success: #059669; /* Forest green (success) - emerald-600 */
+  --color-warning: #D97706; /* Amber orange (warning) - amber-600 */
+  --color-error: #DC2626; /* Clear red (error) - red-600 */
+  
+  /* Border Colors */
+  --color-border: #E2E8F0; /* Light gray border - slate-200 */
+  
+  /* Shadow Colors */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-text-primary font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90 focus:ring-2 focus:ring-primary/20 transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-secondary/90 focus:ring-2 focus:ring-secondary/20 transition-colors duration-200;
+  }
+  
+  .panel-slide-in {
+    @apply transform transition-transform duration-200 ease-out;
+  }
+  
+  .panel-slide-out {
+    @apply transform -translate-x-full transition-transform duration-200 ease-out;
+  }
+  
+  .toolbar-item {
+    @apply px-3 py-2 rounded-md text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface transition-colors duration-200;
+  }
+  
+  .toolbar-item-active {
+    @apply bg-primary text-white;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animation-reduced {
+    @media (prefers-reduced-motion: reduce) {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

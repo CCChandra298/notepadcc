@@ -1,0 +1,371 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom Scrollbar Styles */
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5);
+    border-radius: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.7);
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Text Editor Specific Styles */
+.text-editor {
+  resize: none;
+  outline: none;
+  font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+  tab-size: 4;
+  -moz-tab-size: 4;
+}
+
+.text-editor:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Line Highlighting */
+.text-editor.highlight-current-line {
+  background-attachment: local;
+  background-repeat: no-repeat;
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    margin: 1in;
+    size: 8.5in 11in;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: black;
+    background: white;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break-before {
+    page-break-before: always;
+  }
+  
+  .print-break-after {
+    page-break-after: always;
+  }
+  
+  .print-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}
+
+/* Toolbar Styles */
+.toolbar-item {
+  @apply px-3 py-2 text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface rounded-md transition-colors duration-200;
+}
+
+.toolbar-item:focus {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+/* Document Tab Animations */
+.tab-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.tab-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.tab-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tab-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+
+/* Status Bar Styles */
+.status-item {
+  @apply text-xs text-text-secondary hover:text-text-primary cursor-pointer transition-colors duration-200;
+}
+
+/* Dialog Animations */
+.dialog-backdrop {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-200;
+}
+
+.dialog-content {
+  @apply bg-background rounded-lg shadow-large max-w-md w-full mx-4 transform transition-all duration-200;
+}
+
+.dialog-enter {
+  opacity: 0;
+  transform: scale(0.95) translateY(-10px);
+}
+
+.dialog-enter-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.dialog-exit {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.dialog-exit-active {
+  opacity: 0;
+  transform: scale(0.95) translateY(-10px);
+}
+
+/* Search Highlight Styles */
+.search-highlight {
+  background-color: #fef3c7;
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+
+.search-highlight.current {
+  background-color: #f59e0b;
+  color: white;
+}
+
+/* Selection Styles */
+.text-editor::selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.text-editor::-moz-selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* Focus States */
+.focus-ring:focus {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+.focus-ring:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+/* Drag and Drop Styles */
+.drag-over {
+  @apply border-primary border-dashed bg-primary bg-opacity-5;
+}
+
+.drag-preview {
+  @apply opacity-60 transform rotate-3;
+}
+
+/* Loading States */
+.loading-spinner {
+  @apply animate-spin inline-block w-4 h-4 border-2 border-current border-r-transparent rounded-full;
+}
+
+.loading-pulse {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+/* Error States */
+.error-highlight {
+  @apply border-red-500 bg-red-50;
+}
+
+.error-text {
+  @apply text-red-600;
+}
+
+/* Success States */
+.success-highlight {
+  @apply border-green-500 bg-green-50;
+}
+
+.success-text {
+  @apply text-green-600;
+}
+
+/* Warning States */
+.warning-highlight {
+  @apply border-yellow-500 bg-yellow-50;
+}
+
+.warning-text {
+  @apply text-yellow-600;
+}
+
+/* Utility Classes */
+.text-truncate {
+  @apply truncate;
+}
+
+.text-wrap {
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.select-all {
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .text-editor {
+    border: 2px solid;
+  }
+  
+  .toolbar-item {
+    border: 1px solid transparent;
+  }
+  
+  .toolbar-item:hover,
+  .toolbar-item:focus {
+    border-color: currentColor;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .search-highlight {
+    background-color: #451a03;
+    color: #fbbf24;
+  }
+  
+  .search-highlight.current {
+    background-color: #f59e0b;
+    color: #000;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .text-editor {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .toolbar-item {
+    @apply px-2 py-2 text-sm;
+  }
+  
+  .status-item {
+    @apply text-xs;
+  }
+}
+
+/* Print Optimizations */
+@media print {
+  .text-editor {
+    font-family: 'Times New Roman', serif !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+    color: black !important;
+    background: white !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  .search-highlight {
+    background: transparent !important;
+    color: inherit !important;
+    border-bottom: 1px solid black;
+  }
+  
+  .no-print,
+  .toolbar-item,
+  .status-item,
+  button,
+  .dialog-backdrop,
+  .dialog-content {
+    display: none !important;
+  }
+}
+
+/* Accessibility Improvements */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.focus-visible:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+/* Custom Properties for Theme Support */
+:root {
+  --editor-font-size: 14px;
+  --editor-line-height: 1.5;
+  --editor-tab-size: 4;
+  --editor-font-family: 'JetBrains Mono', monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter;
+}
+
+* {
+  box-sizing: border-box;
+  line-height: normal;
+  font-family: inherit;
+  margin: unset;
+}
